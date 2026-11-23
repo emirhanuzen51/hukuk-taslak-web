@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* Sabit marka renkleri ve modern tipografi */
+@theme {
+  --color-obsidian: #090d14;
+  --color-obsidian-2: #0f1521;
+  --color-slate-dark: #162032;
+  
+  --color-bronze: #c59b27;
+  --color-bronze-light: #dfb747;
+  --color-bronze-muted: #8c6d1d;
+  
+  --color-alabaster: #f8fafc;
+  --color-alabaster-2: #f1f5f9;
+  
+  --font-serif: var(--font-playfair), "Georgia", serif;
+  --font-sans: var(--font-jakarta), system-ui, sans-serif;
+}
+
+/* Dinamik tema yüzeyleri */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-alt: var(--bg-alt);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-accent: var(--accent);
+  --color-accent-subtle: var(--accent-subtle);
+  --color-line: var(--line);
+}
+
+:root {
+  --bg: #faf9f6;
+  --bg-alt: #f3f1ec;
+  --card: #ffffff;
+  --card-border: rgba(15, 23, 42, 0.08);
+  --fg: #0f172a;
+  --fg-muted: #64748b;
+  --accent: #b48523;
+  --accent-subtle: rgba(180, 133, 35, 0.12);
+  --line: rgba(15, 23, 42, 0.09);
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg: #090d14;
+  --bg-alt: #0e1420;
+  --card: #121a28;
+  --card-border: rgba(255, 255, 255, 0.08);
+  --fg: #f8fafc;
+  --fg-muted: #94a3b8;
+  --accent: #dfb747;
+  --accent-subtle: rgba(223, 183, 71, 0.14);
+  --line: rgba(255, 255, 255, 0.08);
+  color-scheme: dark;
+}
+
+html {
+  scroll-padding-top: 100px;
+  overflow-x: clip;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+html.lenis {
+  scroll-behavior: auto !important;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+::selection {
+  background: var(--accent);
+  color: #090d14;
+}
+
+/* Lüks Altın & Bronz Vurgu Çizgisi */
+.bronze-link {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1.5px no-repeat;
+  transition: background-size 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.bronze-link:hover {
+  background-size: 100% 1.5px;
+}
+
+/* Glassmorphism ve Modern Kartlar */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+}
+
+[data-theme="dark"] .glass-panel {
+  background: rgba(18, 26, 40, 0.7);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Hukuk Makalesi / Metin Biçimlendirme */
+.prose-executive {
+  color: var(--fg-muted);
+  line-height: 1.85;
+}
+.prose-executive p {
+  margin-top: 1.25rem;
+  font-size: 1.0625rem;
+}
+.prose-executive h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  line-height: 1.2;
+  color: var(--fg);
+}
+.prose-executive h3 {
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--fg);
+}
+.prose-executive ul {
+  margin-top: 1.25rem;
+  display: grid;
+  gap: 0.75rem;
+}
+.prose-executive li {
+  position: relative;
+  padding-left: 1.75rem;
+  line-height: 1.7;
+}
+.prose-executive li::before {
+  content: "";
+  position: absolute;
+  left: 0.25rem;
+  top: 0.65rem;
+  height: 6px;
+  width: 6px;
+  border-radius: 9999px;
+  background: var(--accent);
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
